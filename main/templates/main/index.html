@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+    {% if user.is_authenticated %}
+        <h1>Hi, {{ user.username }}</h1>
+        <h2><a href="{% url 'logout' %}">Logout</a></h2>
+        <h3><a href="{% url 'doctors' %}">Doctors</a></h3>
+    {% else %}
+        <h1>Hi, how about you log in?</h1>
+        <h2><a href="{% url 'login' %}">Login</a></h2>
+    {% endif %}
+</html>
