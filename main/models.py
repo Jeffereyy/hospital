@@ -4,6 +4,7 @@ class Schedule(models.Model):
     doctor_name = models.CharField(max_length=20, primary_key=True)
     date_time = models.DateTimeField()
     vacant = models.BooleanField(default=True)
+    patient_name = models.CharField(blank=True, max_length=20)
 
     if vacant:
         vacan_str = "vacant"
