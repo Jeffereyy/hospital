@@ -28,7 +28,7 @@ def doctors(request):
 def book(request, doctor_name):
     doctor_name = request.path_info
     doctor_name = str(doctor_name)[9:len(doctor_name)]
-    schedules = Schedule.objects.filter(doctor_name=doctor_name)
+    schedules = Schedule.objects.select_related('doctor_name').filter(doctor_name=doctor_name)
     context = {
         "schedules": schedules,
     }

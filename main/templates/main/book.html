@@ -1,9 +1,13 @@
 <!DOCTYPE html>
 <html>
     {% if user.is_authenticated %}
+    <ul>
         {% for schedule in schedules %}
+        <li>
             <a href="#">{{ schedule }}</a>
+        </li>
         {% endfor %}
+    </ul>
     {% else %}
         <h1>You need to Login first</h1>
         <h3><a href="{% url 'login' %}">login</a></h3>
