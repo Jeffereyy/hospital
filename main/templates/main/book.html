@@ -1,9 +1,25 @@
 <!DOCTYPE html>
 <html>
     {% if user.is_authenticated %}
-        {% for schedule in schedules %}
-            <a href="#">{{ schedule }}</a>
-        {% endfor %}
+        {% if message %}
+            {{ message }}
+        {% else %}
+            <ul>
+                {% for schedule in schedules %}
+                <li>
+                    <a href="#">{{ schedule }}</a>
+                    {% with id=schedule.id %}
+                    <form method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="patient_name" value="{{ user.username }}">
+                        <input type="hidden" name="schedule_id" value="{{ id }}">
+                        <button type="submit">Book</button>
+                    </form>
+                    {% endwith %}
+                </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
     {% else %}
         <h1>You need to Login first</h1>
         <h3><a href="{% url 'login' %}">login</a></h3>
